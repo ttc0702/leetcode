@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=617 lang=javascript
+ * @lc app=leetcode.cn id=987 lang=javascript
  *
- * [617] 合并二叉树
+ * [987] 二叉树的垂序遍历
  */
 
 // @lc code=start
@@ -13,14 +13,11 @@
  * }
  */
 /**
- * @param {TreeNode} t1
- * @param {TreeNode} t2
- * @return {TreeNode}
+ * @param {TreeNode} root
+ * @return {number[][]}
  */
-
-var mergeTrees = function(t1, t2) {
+var verticalTraversal = function(root) {
 
 };
-
 // @lc code=end
 
