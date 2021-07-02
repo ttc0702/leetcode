@@ -19,35 +19,36 @@
  */
 
 // 递归
-var buildTree = function(preorder, inorder) {
-  if (preorder.length === 0) return null
-  let root = new TreeNode()
-  
-  const rootVal = preorder[0]
-  root.val = rootVal
-  const rootInIndex = inorder.indexOf(rootVal)
-
-  const leftPreorder = preorder.slice(1, rootInIndex + 1)
-  // const rightPreorder = preorder.slice(rootInIndex + 1, preorder.length)
-  const rightPreorder = preorder.slice(rootInIndex + 1)
-  const leftInorder = inorder.slice(0, rootInIndex)
-  // const rightInorder = inorder.slice(rootInIndex + 1, inorder.length)
-  const rightInorder = inorder.slice(rootInIndex + 1)
+var buildTree = function (preorder, inorder) {
+  function myBuildTree(preorder, inorder) {
+    if (preorder.length === 0) return null
+    let root = new TreeNode()
     
-  root.left = buildTree(leftPreorder, leftInorder)
-  root.right = buildTree(rightPreorder, rightInorder)
-
-  return root
+    const rootVal = preorder[0]
+    root.val = rootVal
+    const rootInIndex = inorder.indexOf(rootVal)
+  
+    const leftPreorder = preorder.slice(1, rootInIndex + 1)
+    const rightPreorder = preorder.slice(rootInIndex + 1)
+    const leftInorder = inorder.slice(0, rootInIndex)
+    const rightInorder = inorder.slice(rootInIndex + 1)
+      
+    root.left = myBuildTree(leftPreorder, leftInorder)
+    root.right = myBuildTree(rightPreorder, rightInorder)
+  
+    return root
+  }
+  return myBuildTree(preorder, inorder)
 };
 
 // 递归 + 指针
-var buildTree = function(preorder, inorder) {
-  const helper = (pStart, pEnd, iStart, iEnd) => {
+// var buildTree = function(preorder, inorder) {
+//   const helper = (pStart, pEnd, iStart, iEnd) => {
 
-  }
+//   }
 
-  return helper()
-};
+//   return helper()
+// };
 
 // @lc code=end
 

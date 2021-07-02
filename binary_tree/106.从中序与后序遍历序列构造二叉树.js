@@ -18,23 +18,26 @@
  * @return {TreeNode}
  */
 
-var buildTree = function(inorder, postorder) {
-  if (postorder.length === 0) return null
-  let root = new TreeNode()
-  
-  const rootVal = postorder[postorder.length - 1]
-  root.val = rootVal
-  const rootInIndex = inorder.indexOf(rootVal)
-
-  const leftpostorder = postorder.slice(0, rootInIndex)
-  const rightpostorder = postorder.slice(rootInIndex, postorder.length - 1)
-  const leftInorder = inorder.slice(0, rootInIndex)
-  const rightInorder = inorder.slice(rootInIndex + 1, inorder.length)
+var buildTree = function (inorder, postorder) {
+  function myBuildTree(inorder, postorder) {
+    if (postorder.length === 0) return null
+    let root = new TreeNode()
     
-  root.left = buildTree(leftInorder, leftpostorder)
-  root.right = buildTree(rightInorder, rightpostorder)
-
-  return root
+    const rootVal = postorder[postorder.length - 1]
+    root.val = rootVal
+    const rootInIndex = inorder.indexOf(rootVal)
+  
+    const leftpostorder = postorder.slice(0, rootInIndex)
+    const rightpostorder = postorder.slice(rootInIndex, postorder.length - 1)
+    const leftInorder = inorder.slice(0, rootInIndex)
+    const rightInorder = inorder.slice(rootInIndex + 1, inorder.length)
+      
+    root.left = myBuildTree(leftInorder, leftpostorder)
+    root.right = myBuildTree(rightInorder, rightpostorder)
+  
+    return root
+  }
+  return myBuildTree(inorder, postorder)
 };
 
 // @lc code=end

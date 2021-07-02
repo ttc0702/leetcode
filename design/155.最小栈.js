@@ -1,0 +1,64 @@
+/*
+ * @lc app=leetcode.cn id=155 lang=javascript
+ *
+ * [155] 最小栈
+ */
+
+// @lc code=start
+/**
+ * initialize your data structure here.
+ */
+var MinStack = function() {
+  this.arr = []
+  this.min = []
+  this.length = 0
+};
+
+/** 
+ * @param {number} val
+ * @return {void}
+ */
+MinStack.prototype.push = function(val) {
+  this.arr.push(val)
+  if (this.length === 0) {
+    this.min.push(val)
+  } else {
+    const min = this.min[this.length - 1]
+    this.min.push(Math.min(val, min))
+  }
+  this.length++
+};
+
+/**
+ * @return {void}
+ */
+MinStack.prototype.pop = function() {
+  this.arr.pop()
+  this.min.pop()
+  this.length--
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.top = function() {
+  return this.arr[this.length - 1]
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.getMin = function() {
+  return this.min[this.length - 1]
+};
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * var obj = new MinStack()
+ * obj.push(val)
+ * obj.pop()
+ * var param_3 = obj.top()
+ * var param_4 = obj.getMin()
+ */
+// @lc code=end
+
